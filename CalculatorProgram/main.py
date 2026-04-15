@@ -32,14 +32,4 @@ if __name__ == "__main__":
         if user_choice != 'y':
             print("End of the program.")
             break
-
-
-
-
-
-
-
-
-
-
-
+            
