@@ -14,7 +14,7 @@ def run_calculator():
     print("--- Calculator Program ---")
     try:
         num1 = float(input("First number: "))
-        oper = input("Operation: (+, -, /, *) ")
+        oper = input("Operation: (+, -, /, *) ").strip()
         num2 = float(input("Second number: "))
 
         # Call the logic.
@@ -22,14 +22,20 @@ def run_calculator():
         print(f"The result is: {result}")
 
     except ValueError:
-        print("Invalid input bro.")
+        print("Invalid number. Please enter a numeric value.")
+    except (EOFError, KeyboardInterrupt):
+        print("\nEnd of the program.")
+        raise SystemExit
 
 #3. Loop Function.
 if __name__ == "__main__":
     while True:
         run_calculator()
-        user_choice = input("\nDo you want another calculation? (y/n) ").lower()
+        try:
+            user_choice = input("\nDo you want another calculation? (y/n) ").lower()
+        except (EOFError, KeyboardInterrupt):
+            user_choice = 'n'
         if user_choice != 'y':
             print("End of the program.")
             break
-            
+
