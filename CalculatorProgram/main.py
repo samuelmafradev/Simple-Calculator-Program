@@ -1,5 +1,9 @@
 # CALCULATOR PROGRAM.
 # ------------------ #
+def read_number(prompt):
+    return float(input(prompt))
+
+
 # 1. First part. Logic Math.
 def calculate(n1, op, n2):
     match op:
@@ -13,9 +17,9 @@ def calculate(n1, op, n2):
 def run_calculator():
     print("--- Calculator Program ---")
     try:
-        num1 = float(input("First number: "))
+        num1 = read_number("First number: ")
         oper = input("Operation: (+, -, /, *) ")
-        num2 = float(input("Second number: "))
+        num2 = read_number("Second number: ")
 
         # Call the logic.
         result = calculate(num1, oper, num2)
@@ -32,4 +36,3 @@ if __name__ == "__main__":
         if user_choice != 'y':
             print("End of the program.")
             break
-            
