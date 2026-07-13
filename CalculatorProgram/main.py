@@ -27,6 +27,9 @@ def run_calculator():
         print(f"Invalid input: {err}")
     except ZeroDivisionError as err:
         print(f"Math error: {err}")
+    except (EOFError, KeyboardInterrupt):
+        print("\nEnd of the program.")
+        raise SystemExit
     else:
         print(f"The result is: {result}")
 
@@ -37,8 +40,7 @@ if __name__ == "__main__":
         try:
             user_choice = input("\nDo you want another calculation? (y/n) ").strip().lower()
         except (EOFError, KeyboardInterrupt):
-            print("\nEnd of the program.")
-            break
+            user_choice = 'n'
         if user_choice != 'y':
             print("End of the program.")
             break
