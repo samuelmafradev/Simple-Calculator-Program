@@ -6,30 +6,39 @@ def calculate(n1, op, n2):
         case '+': return n1 + n2
         case '-': return n1 - n2
         case '*': return n1 * n2
-        case '/': return n1 / n2 if n2 != 0 else "Can NOT be divided by zero."
-        case _: return "Invalid Operator."
+        case '/':
+            if n2 == 0:
+                raise ZeroDivisionError("Cannot divide by zero.")
+            return n1 / n2
+        case _:
+            raise ValueError(f"Invalid operator: {op!r}")
 
 # 2. Calculate Logic.
 def run_calculator():
     print("--- Calculator Program ---")
     try:
         num1 = float(input("First number: "))
-        oper = input("Operation: (+, -, /, *) ")
+        oper = input("Operation: (+, -, /, *) ").strip()
         num2 = float(input("Second number: "))
 
         # Call the logic.
         result = calculate(num1, oper, num2)
+    except ValueError as err:
+        print(f"Invalid input: {err}")
+    except ZeroDivisionError as err:
+        print(f"Math error: {err}")
+    else:
         print(f"The result is: {result}")
-
-    except ValueError:
-        print("Invalid input bro.")
 
 #3. Loop Function.
 if __name__ == "__main__":
     while True:
         run_calculator()
-        user_choice = input("\nDo you want another calculation? (y/n) ").lower()
+        try:
+            user_choice = input("\nDo you want another calculation? (y/n) ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            print("\nEnd of the program.")
+            break
         if user_choice != 'y':
             print("End of the program.")
             break
-            
